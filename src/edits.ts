@@ -202,7 +202,7 @@ async function addReleasesToTrack(appEditId: string, options: EditOptions, versi
                         userFraction: options.userFraction,
                         status: status,
                         inAppUpdatePriority: options.inAppUpdatePriority,
-                        releaseNotes: (await readLocalizedReleaseNotes(options.whatsNewDir)) || options.whatsNewText,
+                        releaseNotes: (options.whatsNewText) ? ([{language: 'en-GB', text: options.whatsNewText}]) : (await readLocalizedReleaseNotes(options.whatsNewDir)),
                         versionCodes: versionCodes.filter(x => x != 0).map(x => x.toString())
                     }
                 ]
