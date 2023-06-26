@@ -20,6 +20,7 @@ export async function run() {
         const userFraction = core.getInput('userFraction', { required: false })
         const status = core.getInput('status', { required: false });
         const whatsNewDir = core.getInput('whatsNewDirectory', { required: false });
+        const whatsNewText = core.getInput('whatsNewText', { required: false });
         const mappingFile = core.getInput('mappingFile', { required: false });
         const debugSymbols = core.getInput('debugSymbols', { required: false });
         const changesNotSentForReview = core.getInput('changesNotSentForReview', { required: false }) == 'true';
@@ -73,6 +74,7 @@ export async function run() {
                 inAppUpdatePriorityInt,
                 userFractionFloat,
                 whatsNewDir,
+                whatsNewText,
                 mappingFile,
                 debugSymbols,
                 releaseName,

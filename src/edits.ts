@@ -26,6 +26,7 @@ export interface EditOptions {
     inAppUpdatePriority: number;
     userFraction?: number;
     whatsNewDir?: string;
+    whatsNewText?: string;
     mappingFile?: string;
     debugSymbols?: string;
     name?: string;
@@ -40,6 +41,7 @@ export async function runUpload(
     inAppUpdatePriority: number | undefined,
     userFraction: number | undefined,
     whatsNewDir: string | undefined,
+    whatsNewText: string | undefined,
     mappingFile: string | undefined,
     debugSymbols: string | undefined,
     name: string | undefined,
@@ -61,6 +63,7 @@ export async function runUpload(
         inAppUpdatePriority: inAppUpdatePriority || 0,
         userFraction: userFraction,
         whatsNewDir: whatsNewDir,
+        whatsNewText: whatsNewText,
         mappingFile: mappingFile,
         debugSymbols: debugSymbols,
         name: name,
@@ -199,7 +202,7 @@ async function addReleasesToTrack(appEditId: string, options: EditOptions, versi
                         userFraction: options.userFraction,
                         status: status,
                         inAppUpdatePriority: options.inAppUpdatePriority,
-                        releaseNotes: await readLocalizedReleaseNotes(options.whatsNewDir),
+                        releaseNotes: (await readLocalizedReleaseNotes(options.whatsNewDir)) || options.whatsNewText,
                         versionCodes: versionCodes.filter(x => x != 0).map(x => x.toString())
                     }
                 ]
